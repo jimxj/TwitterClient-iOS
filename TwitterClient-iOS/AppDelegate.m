@@ -23,11 +23,28 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:UserDidLogoutNotification object:nil];
+    
+    TWUser *currentUser = [TWUser currentUser];
+    if(!currentUser) {
+        self.window.rootViewController = [[LoginViewController alloc] init];
+    } else {
+        UINavigationController *nvc = [[UINavigationController alloc] init];
+        nvc.navigationBar.translucent = YES;
+        nvc.navigationBar.barStyle = UIBarStyleBlack;
+        nvc.navigationBar.tintColor = [UIColor whiteColor];
+        nvc.navigationBar.backgroundColor = [UIColor blueColor];
+        [nvc setViewControllers:@[[[MainViewController alloc] init]]];
+        self.window.rootViewController = nvc;
+    }
     
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+- (void) userDidLogout {
+    self.window.rootViewController = [[LoginViewController alloc] init]; 
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -55,39 +72,8 @@
 #pragma mark - OAuth
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    [[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
-        NSLog(@"Got access token %@ ", accessToken.token);
-        
-        [[TwitterClient sharedInstance].requestSerializer saveAccessToken:accessToken];
-        
-        UINavigationController *nvc = [[UINavigationController alloc] init];
-        nvc.navigationBar.translucent = YES;
-        nvc.navigationBar.barStyle = UIBarStyleBlack;
-        nvc.navigationBar.tintColor = [UIColor whiteColor];
-        nvc.navigationBar.backgroundColor = [UIColor redColor];
-        [nvc setViewControllers:@[[[MainViewController alloc] init]]];
-        
-        [self.window.rootViewController presentViewController:nvc animated:YES completion:nil ];
-        
-        
-//        [[TwitterClient sharedInstance] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"Current user json: %@", responseObject);
-//            TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
-//            NSLog(@"Current user : %@", user);
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"Faile to get current user : %@", error);
-//        }];
-//        
-//        [[TwitterClient sharedInstance] GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@"Current user json: %@", responseObject);
-//            TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
-//            NSLog(@"Current user : %@", user);
-//        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//            NSLog(@"Faile to get current user : %@", error);
-//        }];
-    } failure:^(NSError *error) {
-        NSLog(@"Failed to get access token");
-    }];
+
+    [[TwitterClient sharedInstance] openURL:url];
     
     return YES;
 }

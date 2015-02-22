@@ -9,6 +9,7 @@
 #import "TWReTweetCell.h"
 #import "NSDate+TimeAgo.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
 
 @interface TWReTweetCell()
 
@@ -34,8 +35,14 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    self.testImage.layer.cornerRadius = 3;
+    self.testImage.layer.cornerRadius = 5;
     self.testImage.clipsToBounds = YES;
+    
+    UITapGestureRecognizer *retweetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(retweetFlagTaped)];
+    [self.retweetedFlagImage addGestureRecognizer:retweetTap];
+    
+    UITapGestureRecognizer *favoriteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(favoriteFlagTaped)];
+    [self.favoratedFlagImage addGestureRecognizer:favoriteTap];
 }
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -66,12 +73,44 @@
     }
     
     if(tweet.favorited) {
-        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorate_on"];
+        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorite_on"];
     } else {
-        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorate"];
+        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorite"];
     }
 }
 
+
+- (void) retweetFlagTaped {
+    if(self.tweet.retweeted) {
+        self.retweetedFlagImage.image = [UIImage imageNamed:@"retweet"];
+        self.tweet.retweetNum--;
+    } else {
+        self.retweetedFlagImage.image = [UIImage imageNamed:@"retweet_on"];
+        self.tweet.retweetNum++;
+    }
+    
+    self.tweet.retweeted = !self.tweet.retweeted;
+    
+    [self.retweetNumLabel setText:[NSString stringWithFormat:@"%ld",(long)self.tweet.retweetNum]];
+    
+    [[TwitterClient sharedInstance] retweet:self.tweet.idStr];
+}
+
+- (void) favoriteFlagTaped {
+    if(self.tweet.favorited) {
+        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorite"];
+        self.tweet.favorateNum--;
+    } else {
+        self.favoratedFlagImage.image = [UIImage imageNamed:@"favorite_on"];
+        self.tweet.favorateNum++;
+    }
+    
+    self.tweet.favorited = !self.tweet.favorited;
+    
+    [self.favorateNumLabel setText:[NSString stringWithFormat:@"%ld",(long)self.tweet.favorateNum]];
+    
+    [[TwitterClient sharedInstance] retweet:self.tweet.idStr];
+}
 
 
 

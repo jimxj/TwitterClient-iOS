@@ -7,6 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TWTweetDetailViewController">
             <connections>
                 <outlet property="favorateLabel" destination="Ivi-9D-5oL" id="ASI-mi-oDd"/>
+                <outlet property="favoriteFlagImage" destination="AXS-OK-0nG" id="y9o-cT-DiY"/>
+                <outlet property="retweetFlagImage" destination="Rxv-Su-TnX" id="iGR-SD-pmo"/>
                 <outlet property="retweetImage1" destination="vbz-3d-1I2" id="EJD-cr-ecK"/>
                 <outlet property="retweetLabel" destination="8l3-Gv-7mg" id="b64-fk-gF6"/>
                 <outlet property="retweetNumLabel" destination="xq6-7b-DQL" id="ZXN-iX-lnd"/>
@@ -69,7 +71,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/19/15, 8:43PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vJ-aP-nJI">
-                    <rect key="frame" x="8" y="215.5" width="107.5" height="17"/>
+                    <rect key="frame" x="8" y="215" width="107.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -102,8 +104,8 @@
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="Rxv-Su-TnX">
-                    <rect key="frame" x="151" y="288" width="19" height="15.5"/>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="Rxv-Su-TnX">
+                    <rect key="frame" x="151" y="288" width="19" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="O0z-Zx-Vxu"/>
                         <constraint firstAttribute="width" constant="19" id="TY5-Wp-b0r"/>
@@ -116,7 +118,7 @@
                         <constraint firstAttribute="height" constant="1" id="rdf-mK-OEz"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="favorite" translatesAutoresizingMaskIntoConstraints="NO" id="AXS-OK-0nG">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="favorite" translatesAutoresizingMaskIntoConstraints="NO" id="AXS-OK-0nG">
                     <rect key="frame" x="260" y="288" width="16" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="476-bc-om2"/>

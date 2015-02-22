@@ -7,11 +7,18 @@
 //
 
 #import "BDBOAuth1RequestOperationManager.h"
+#import "TWUser.h"
 
 @interface TwitterClient : BDBOAuth1RequestOperationManager
 
 + (TwitterClient *) sharedInstance;
 
 -(void) retweet:(NSString *)tweetId;
+
+-(void) favorite:(NSString *)tweetId;
+
+- (void) loginWithCompletion:(void (^)(TWUser *user, NSError *error)) completion;
+
+- (void) openURL:(NSURL *) url;
 
 @end

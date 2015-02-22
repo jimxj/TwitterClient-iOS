@@ -9,11 +9,21 @@
 #import <UIKit/UIKit.h>
 #import <Mantle.h>
 
+extern NSString * const UserDidLoginNotification;
+extern NSString * const UserDidLogoutNotification;
+
 @interface TWUser : MTLModel<MTLJSONSerializing>
 
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *screenName;
-@property (nonatomic, copy, readonly) NSString *profileImageUrl;
-@property (nonatomic, copy, readonly) NSString *tagLine;
+@property (nonatomic, strong) NSString *idStr;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *screenName;
+@property (nonatomic, strong) NSString *profileImageUrl;
+@property (nonatomic, strong) NSString *tagLine;
+
++ (TWUser *) currentUser;
++ (void) setCurrentUser:(TWUser *) user;
++ (void) logout;
+
+- (instancetype) initFromJson:(NSDictionary *) dictionaryValue;
 
 @end

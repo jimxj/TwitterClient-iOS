@@ -12,6 +12,7 @@
 #import "TWTweet.h"
 #import "TWTweetDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "TWNewTweetViewController.h"
 
 NSString * const kReTweetCellName = @"TWReTweetCell";
 
@@ -28,6 +29,12 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.title = @"Tweet";
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewButton)];
 
     // set uptable view
     [self.tableView registerNib:[UINib nibWithNibName:kReTweetCellName bundle:nil] forCellReuseIdentifier:kReTweetCellName];
@@ -88,6 +95,16 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
     TWTweetDetailViewController *detailsView = [[TWTweetDetailViewController alloc] init];
     detailsView.tweet =  self.tweets[indexPath.row];
     [self.navigationController pushViewController:detailsView animated:YES];
+}
+
+-(void) onSignOutButton {
+    [TWUser logout];
+}
+
+-(void) onNewButton {
+    TWNewTweetViewController *vc = [[TWNewTweetViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 /*

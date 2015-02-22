@@ -28,6 +28,8 @@
 		3876F7A11A98645C0080C378 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3876F7A01A98645C0080C378 /* NSDateTimeAgo.bundle */; };
 		3876F7A51A990F280080C378 /* TWTweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876F7A31A990F280080C378 /* TWTweetDetailViewController.m */; };
 		3876F7A61A990F280080C378 /* TWTweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876F7A41A990F280080C378 /* TWTweetDetailViewController.xib */; };
+		3876F7AA1A995CD80080C378 /* TWNewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */; };
+		3876F7AB1A995CD90080C378 /* TWNewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */; };
 		B9428F9C9A798D035E21C1E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 319B4AC1684DC9640A8142CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,9 @@
 		3876F7A21A990F280080C378 /* TWTweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWTweetDetailViewController.h; sourceTree = "<group>"; };
 		3876F7A31A990F280080C378 /* TWTweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWTweetDetailViewController.m; sourceTree = "<group>"; };
 		3876F7A41A990F280080C378 /* TWTweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWTweetDetailViewController.xib; sourceTree = "<group>"; };
+		3876F7A71A995CD80080C378 /* TWNewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNewTweetViewController.h; sourceTree = "<group>"; };
+		3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNewTweetViewController.m; sourceTree = "<group>"; };
+		3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWNewTweetViewController.xib; sourceTree = "<group>"; };
 		5B55BBD6DB7B0E46AF3569DC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D48131AB87274AB84C37DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +204,9 @@
 				3876F7A21A990F280080C378 /* TWTweetDetailViewController.h */,
 				3876F7A31A990F280080C378 /* TWTweetDetailViewController.m */,
 				3876F7A41A990F280080C378 /* TWTweetDetailViewController.xib */,
+				3876F7A71A995CD80080C378 /* TWNewTweetViewController.h */,
+				3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */,
+				3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -328,6 +336,7 @@
 				38510B7C1A97135100C01636 /* TWBasicTweetCell.xib in Resources */,
 				38510B811A9713B800C01636 /* TWReTweetCell.xib in Resources */,
 				38510B101A945F5500C01636 /* LaunchScreen.xib in Resources */,
+				3876F7AB1A995CD90080C378 /* TWNewTweetViewController.xib in Resources */,
 				3876F7A11A98645C0080C378 /* NSDateTimeAgo.bundle in Resources */,
 				38510B0D1A945F5500C01636 /* Images.xcassets in Resources */,
 				38510B2A1A94608A00C01636 /* LoginViewController.xib in Resources */,
@@ -390,6 +399,7 @@
 				38510B7B1A97135100C01636 /* TWBasicTweetCell.m in Sources */,
 				38745BBA1A9810DF00035B73 /* NSDate+TimeAgo.m in Sources */,
 				3876F7A51A990F280080C378 /* TWTweetDetailViewController.m in Sources */,
+				3876F7AA1A995CD80080C378 /* TWNewTweetViewController.m in Sources */,
 				38510B021A945F5500C01636 /* main.m in Sources */,
 				38745BBD1A98145A00035B73 /* NSMutableSet+OperationByValue.m in Sources */,
 				38510B721A97067E00C01636 /* TWTweet.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TwitterClient.h"
+#import "MainViewController.h"
 
 @interface LoginViewController ()
 
@@ -26,18 +27,24 @@
 }
 
 - (IBAction)onLogin:(UIButton *)sender {
-    [[TwitterClient sharedInstance].requestSerializer removeAccessToken];
-    [[TwitterClient sharedInstance] fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"] scope:nil success:^(BDBOAuth1Credential *requestToken) {
-        NSLog(@"Got request token : %@", requestToken );
-        
-        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
-        
-        [[UIApplication sharedApplication] openURL:authURL];
-        
-    } failure:^(NSError *error) {
-       NSLog(@"Failed to get request token : %@", error );
+    [[TwitterClient sharedInstance] loginWithCompletion:^(TWUser *user, NSError *error) {
+        if(user) {
+            NSLog(@"Welcome %@", user.name);
+            
+            //Modally present tweet view
+            UINavigationController *nvc = [[UINavigationController alloc] init];
+            nvc.navigationBar.translucent = YES;
+            nvc.navigationBar.barStyle = UIBarStyleBlack;
+            nvc.navigationBar.tintColor = [UIColor whiteColor];
+            nvc.navigationBar.backgroundColor = [UIColor blueColor];
+            [nvc setViewControllers:@[[[MainViewController alloc] init]]];
+            
+            [self presentViewController:nvc animated:YES completion:nil ];
+        } else {
+            //present error view
+        }
     }];
-
+    
 }
 
 

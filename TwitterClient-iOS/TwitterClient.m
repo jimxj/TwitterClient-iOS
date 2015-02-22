@@ -12,6 +12,11 @@ NSString * const kTwitterConsumerKey = @"4HOHHbwBLpqDCrujWyZJ8U6YU";
 NSString * const kTwitterConsumerSecret = @"hIGTaXhbcrMO1lN6zaYxtPT7ZbDDbISbefc4Kpz14EFFX9kDhm";
 NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 
+@interface TwitterClient ()
+
+@property(nonatomic, strong) void (^loginCompletion)(TWUser *user, NSError *error);
+
+@end
 
 @implementation TwitterClient
 
@@ -28,13 +33,61 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     return instance;
 }
 
+- (void) loginWithCompletion:(void (^)(TWUser *user, NSError *error)) completion {
+    self.loginCompletion = completion;
+    
+    [self.requestSerializer removeAccessToken];
+    [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"] scope:nil success:^(BDBOAuth1Credential *requestToken) {
+        NSLog(@"Got request token : %@", requestToken );
+        
+        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
+        
+        [[UIApplication sharedApplication] openURL:authURL];
+    } failure:^(NSError *error) {
+        NSLog(@"Failed to get request token : %@", error );
+        self.loginCompletion(nil, error);
+    }];
+}
+
+- (void) openURL:(NSURL *) url {
+    [[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
+        NSLog(@"Got access token %@ ", accessToken.token);
+        
+        [self.requestSerializer saveAccessToken:accessToken];
+        [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSLog(@"Current user json: %@", responseObject);
+            TWUser *user = [[TWUser alloc] initFromJson:responseObject];
+            [TWUser setCurrentUser:user];
+            self.loginCompletion(user, nil);
+            NSLog(@"Current user : %@", user);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Faile to get current user : %@", error);
+            self.loginCompletion(nil, error);
+        }];
+    } failure:^(NSError *error) {
+        NSLog(@"Failed to get access token");
+        self.loginCompletion(nil, error);
+    }];
+    
+}
+
 -(void) retweet:(NSString *)tweetId {
-    [[TwitterClient sharedInstance] GET:[NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[TwitterClient sharedInstance] POST:[NSString stringWithFormat:@"1.1/statuses/retweet/%@.json", tweetId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"retweet success response: %@", responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"retweet failure response: %@", error);
     }];
 }
+
+-(void) favorite:(NSString *)tweetId {
+    [[TwitterClient sharedInstance] POST:[NSString stringWithFormat:@"1.1/favorites/create.json?id=%@", tweetId] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"favorite success response: %@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"favorite failure response: %@", error);
+    }];
+}
+
 
 @end
