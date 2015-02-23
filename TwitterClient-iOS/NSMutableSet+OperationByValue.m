@@ -67,7 +67,7 @@
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         if([obj isEqual:anObject]) {
             result = YES;
-            stop = YES;
+            *stop = YES;
         }
     }];
 
@@ -83,7 +83,7 @@
     [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         if([obj isEqual:object]) {
             found = YES;
-            stop = YES;
+            *stop = YES;
         }
     }];
 
