@@ -24,6 +24,10 @@ Time spent: 14 hours
 - [ ] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
 - [x] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
+#### Additional
+- [X] Use Mantle as model object framework 
+
+
 ### Walkthrough
 
 ![Video Walkthrough](demo.gif)
