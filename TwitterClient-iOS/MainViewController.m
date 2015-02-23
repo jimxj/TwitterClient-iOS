@@ -14,6 +14,8 @@
 #import "SVProgressHUD.h"
 #import "TWNewTweetViewController.h"
 #import "TWNewTweetViewController.h"
+#import "UIScrollView+SVPullToRefresh.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 NSString * const kReTweetCellName = @"TWReTweetCell";
 
@@ -22,6 +24,8 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshController;
 @property (nonatomic, strong) NSMutableArray *tweets;
+//@property (nonatomic, assign) NSInteger maxId;
+//@property (nonatomic, assign) NSInteger minId;
 
 @end
 
@@ -49,9 +53,28 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
     self.refreshController = [[UIRefreshControl alloc] init];
     [self.refreshController addTarget:self action:@selector(refreshTimeLine) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshController atIndex:0];
+    
+//    [self.tableView addPullToRefreshWithActionHandler:^{
+//        // prepend data to dataSource, insert cells at top of table view
+//        // call [tableView.pullToRefreshView stopAnimating] when done
+//        [self refreshTimeLine];
+//    }];
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        // prepend data to dataSource, insert cells at top of table view
+        // call [tableView.pullToRefreshView stopAnimating] when done
+        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+        f.numberStyle = NSNumberFormatterDecimalStyle;
+        NSNumber *maxId = [f numberFromString:((TWTweet *)[self.tweets lastObject]).idStr];
+        [self refreshTimeLineWithinMaxId:[NSNumber numberWithLong:maxId.longLongValue - 1] andMinId:nil];
+    }];
 
+    [self refreshTimeLineWithinMaxId:nil andMinId:nil];
+}
 
-    [self refreshTimeLine];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,13 +94,33 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 }
 
 - (void) refreshTimeLine {
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+    [self refreshTimeLineWithinMaxId:nil andMinId:[f numberFromString:((TWTweet *)[self.tweets firstObject]).idStr]];
+}
+
+- (void) refreshTimeLineWithinMaxId:(NSNumber *) maxId andMinId:(NSNumber *) minId {
     [SVProgressHUD show];
-    [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"home_timeline json: %@", responseObject);
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    if(maxId) {
+        [params setObject:maxId forKey:@"max_id"];
+    }
+    if(minId) {
+        [params setObject:minId forKey:@"since_id"];
+    }
+    [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //NSLog(@"home_timeline json: %@", responseObject);
         //TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
         //NSLog(@"Current user : %@", user);
         
-        self.tweets = [[TWTweet tweetsWithArray:responseObject] mutableCopy];
+        NSArray *newTweets = [TWTweet tweetsWithArray:responseObject];
+        if(maxId) { // add at tail
+            [self.tweets addObjectsFromArray:newTweets];
+        } else if(minId) { // add at beginning
+            self.tweets = [[newTweets arrayByAddingObjectsFromArray:self.tweets] mutableCopy];
+        } else {
+            self.tweets = [[TWTweet tweetsWithArray:responseObject] mutableCopy];
+        }
         
         [self.tableView reloadData];
         

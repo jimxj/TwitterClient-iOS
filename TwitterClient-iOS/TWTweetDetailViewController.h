@@ -13,6 +13,4 @@
 
 @property (nonatomic, strong) TWTweet *tweet;
 
--(instancetype) initWithTweet:(TWTweet *) tweet;
-
 @end

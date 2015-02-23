@@ -25,18 +25,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *retweetFlagImage;
 @property (weak, nonatomic) IBOutlet UIImageView *favoriteFlagImage;
 
+@property (nonatomic, strong) NSDateFormatter *dateFormat;
 
 @end
 
-@implementation TWTweetDetailViewController
-
--(instancetype) initWithTweet:(TWTweet *) tweet {
-    self = [super init];
-    if(self) {
-        _tweet = tweet;
-    }
-    
-    return self;
+@implementation TWTweetDetailViewController {
+    NSDateFormatter *_dateFormat;
 }
 
 - (void)viewDidLoad {
@@ -44,7 +38,8 @@
     // Do any additional setup after loading the view from its nib.
     
     [self.tweetTextLabel setText:self.tweet.text];
-    [self.timestampLabel setText:[self.tweet.createdAt dateTimeAgo]];
+    NSLog(@"---timestamp %@ for %@ with %@", [[self getDateFormatter] stringFromDate:self.tweet.createdAt], self.tweet.createdAt, self.dateFormat);
+    [self.timestampLabel setText:[self.dateFormat stringFromDate:self.tweet.createdAt]];
     [self.retweetNumLabel setText:[NSString stringWithFormat:@"%ld",(long)self.tweet.retweetNum]];
     [self.favorateLabel setText:[NSString stringWithFormat:@"%ld",(long)self.tweet.favorateNum]];
     [self.userNameLabel setText:self.tweet.user.name];
@@ -103,6 +98,15 @@
     self.tweet.favorited = !self.tweet.favorited;
     
     [[TwitterClient sharedInstance] retweet:self.tweet.idStr];
+}
+
+- (NSDateFormatter *) getDateFormatter {
+    if(!_dateFormat) {
+        _dateFormat = [[NSDateFormatter alloc] init];
+        [_dateFormat setDateFormat:@"MM/dd/yy hh:mma"];
+    }
+    
+    return _dateFormat;
 }
 
 //-(void) setTweet:(TWTweet *)tweet {
