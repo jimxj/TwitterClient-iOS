@@ -9,6 +9,7 @@
 #import "TWNewTweetViewController.h"
 #import "TWUser.h"
 #import "UIImageView+AFNetworking.h"
+#import "TwitterClient.h"
 
 @interface TWNewTweetViewController () <UITextViewDelegate>
 
@@ -16,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
-
+@property (nonatomic, strong) UILabel *tweetCharCountLabel;
 
 @end
 
@@ -30,9 +31,18 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Tweet" style:UIBarButtonItemStylePlain target:self action:@selector(onApplyButton)];
     
+    self.tweetCharCountLabel = [[UILabel alloc] init];
+    self.tweetCharCountLabel.textAlignment = NSTextAlignmentRight;
+    [self.tweetCharCountLabel setText:@"140"];
+    self.navigationItem.titleView = self.tweetCharCountLabel;
+    [self.tweetCharCountLabel sizeToFit];
+    [self.tweetCharCountLabel setFont:[UIFont systemFontOfSize:12]];
+    [self.tweetCharCountLabel setTextColor:[UIColor lightGrayColor]];
+    //self.navigationItem.title = @"140";
+    
     TWUser *currentUser = [TWUser currentUser];
     [self.userNameLabel setText:currentUser.name];
-    [self.screenNameLabel setText:currentUser.screenName];
+    [self.screenNameLabel setText:[NSString stringWithFormat:@"@%@", currentUser.screenName]];
     [self.userProfileImage setImageWithURL:[NSURL URLWithString:currentUser.profileImageUrl]];
     
     self.tweetTextView.delegate = self;
@@ -51,6 +61,9 @@
 }
 
 - (void) onApplyButton {
+    if(self.tweetTextView.text.length) {
+        [[TwitterClient sharedInstance] updateStatus:self.tweetTextView.text];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -69,21 +82,32 @@
         self.tweetTextView.text = @"What's happening...";
         [self.tweetTextView resignFirstResponder];
     }
+    
+    //self.navigationItem.title = [NSString stringWithFormat:@"%@", @(140 - self.tweetTextView.text.length)];
+    [self.tweetCharCountLabel setText:[NSString stringWithFormat:@"%@", @(140 - self.tweetTextView.text.length)]];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if(![self isAcceptableTextLength:self.tweetTextView.text.length + text.length - range.length]) {
+        return NO;
+    }
     
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         if(self.tweetTextView.text.length == 0){
             self.tweetTextView.textColor = [UIColor lightGrayColor];
-            self.tweetTextView.text = @"List words or terms separated by commas";
+            self.tweetTextView.text = @"What's happening...";
             [self.tweetTextView resignFirstResponder];
         }
         return NO;
     }
     
     return YES;
+}
+
+- (BOOL)isAcceptableTextLength:(NSUInteger)length {
+    return length <= 140;
 }
 
 /*

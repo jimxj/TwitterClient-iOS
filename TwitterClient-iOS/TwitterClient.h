@@ -17,6 +17,8 @@
 
 -(void) favorite:(NSString *)tweetId;
 
+-(void) updateStatus:(NSString *)status;
+
 - (void) loginWithCompletion:(void (^)(TWUser *user, NSError *error)) completion;
 
 - (void) openURL:(NSURL *) url;

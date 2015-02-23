@@ -65,6 +65,9 @@
     
     if(tweet.retweeted) {
         self.retweetedFlagImage.image = [UIImage imageNamed:@"retweet_on"];
+        
+        self.retweetHeaderImage.hidden = NO;
+        self.retweetLabel.hidden = NO;
     } else {
         self.retweetedFlagImage.image = [UIImage imageNamed:@"retweet"];
         
