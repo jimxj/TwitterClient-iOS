@@ -26,5 +26,5 @@ Time spent: 14 hours
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](demo.gif)
 
