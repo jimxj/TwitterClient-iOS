@@ -62,7 +62,11 @@
 
 - (void) onApplyButton {
     if(self.tweetTextView.text.length) {
-        [[TwitterClient sharedInstance] updateStatus:self.tweetTextView.text];
+        [[TwitterClient sharedInstance] updateStatus:self.tweetTextView.text WithCompletion:^(TWTweet *newTweet, NSError *error) {
+            if(newTweet) {
+                [self.tweetCreationListner newTweet:newTweet];
+            }
+        }];
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }

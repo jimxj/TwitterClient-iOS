@@ -13,10 +13,11 @@
 #import "TWTweetDetailViewController.h"
 #import "SVProgressHUD.h"
 #import "TWNewTweetViewController.h"
+#import "TWNewTweetViewController.h"
 
 NSString * const kReTweetCellName = @"TWReTweetCell";
 
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, NewTweetProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshController;
@@ -103,8 +104,15 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 
 -(void) onNewButton {
     TWNewTweetViewController *vc = [[TWNewTweetViewController alloc] init];
+    vc.tweetCreationListner = self;
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nvc animated:YES completion:nil];
+}
+
+#pragma new tweet protocol
+- (void) newTweet:(TWTweet *) tweet {
+    [self.tweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
 }
 
 /*

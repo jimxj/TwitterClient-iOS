@@ -8,6 +8,7 @@
 
 #import "BDBOAuth1RequestOperationManager.h"
 #import "TWUser.h"
+#import "TWTweet.h"
 
 @interface TwitterClient : BDBOAuth1RequestOperationManager
 
@@ -17,7 +18,7 @@
 
 -(void) favorite:(NSString *)tweetId;
 
--(void) updateStatus:(NSString *)status;
+-(void) updateStatus:(NSString *)status WithCompletion:(void (^)(TWTweet *newTweet, NSError *error)) completion;
 
 - (void) loginWithCompletion:(void (^)(TWUser *user, NSError *error)) completion;
 

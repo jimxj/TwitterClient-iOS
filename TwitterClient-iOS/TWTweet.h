@@ -23,7 +23,7 @@
 @property (nonatomic, assign) BOOL retweeted;
 
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error;
+- (instancetype) initFromJson:(NSDictionary *) dictionaryValue;
 
 + (NSArray *) tweetsWithArray:(NSArray *)array;
 

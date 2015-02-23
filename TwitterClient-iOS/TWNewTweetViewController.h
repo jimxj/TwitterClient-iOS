@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TWTweet.h"
+
+@protocol NewTweetProtocol
+- (void) newTweet:(TWTweet *) tweet;
+@end
 
 @interface TWNewTweetViewController : UIViewController
+
+@property(nonatomic, weak) id<NewTweetProtocol> tweetCreationListner;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "TwitterClient.h"
+#import "TWTweet.h"
 
 NSString * const kTwitterConsumerKey = @"4HOHHbwBLpqDCrujWyZJ8U6YU";
 NSString * const kTwitterConsumerSecret = @"hIGTaXhbcrMO1lN6zaYxtPT7ZbDDbISbefc4Kpz14EFFX9kDhm";
@@ -89,12 +90,13 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
--(void) updateStatus:(NSString *)status {
+-(void) updateStatus:(NSString *)status WithCompletion:(void (^)(TWTweet *newTweet, NSError *error)) completion {
     [[TwitterClient sharedInstance] POST:@"1.1/statuses/update.json" parameters: @{@"status": status} success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"update status success response: %@", responseObject);
-        
+        completion([[TWTweet alloc] initFromJson:responseObject], nil);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"update status failure response: %@", error);
+        completion(nil, error);
     }];
 }
 
