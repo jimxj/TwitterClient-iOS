@@ -155,7 +155,9 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 #pragma new tweet protocol
 - (void) newTweet:(TWTweet *) tweet {
     [self.tweets insertObject:tweet atIndex:0];
-    [self.tableView reloadData];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
+    //[self.tableView reloadData];
 }
 
 /*
