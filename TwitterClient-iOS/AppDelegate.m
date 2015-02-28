@@ -11,6 +11,8 @@
 #import "TwitterClient.h"
 #import "TWUser.h"
 #import "MainViewController.h"
+#import "CenterViewController.h"
+#import "LeftViewController.h"
 
 @interface AppDelegate ()
 
@@ -29,13 +31,9 @@
     if(!currentUser) {
         self.window.rootViewController = [[LoginViewController alloc] init];
     } else {
-        UINavigationController *nvc = [[UINavigationController alloc] init];
-        nvc.navigationBar.translucent = YES;
-        nvc.navigationBar.barStyle = UIBarStyleBlack;
-        nvc.navigationBar.tintColor = [UIColor whiteColor];
-        nvc.navigationBar.backgroundColor = [UIColor blueColor];
-        [nvc setViewControllers:@[[[MainViewController alloc] init]]];
-        self.window.rootViewController = nvc;
+        CenterViewController *centerVC = [[CenterViewController alloc] init];
+        [centerVC manuDidChanged:TwitterManuItemHomeTimeLine];
+        self.window.rootViewController = centerVC;
     }
     
     [self.window makeKeyAndVisible];

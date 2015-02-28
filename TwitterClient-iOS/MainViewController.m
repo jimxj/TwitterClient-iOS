@@ -35,6 +35,9 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.view.layer.borderWidth = 1;
+    self.view.layer.borderColor = [UIColor blueColor].CGColor;
+    
     self.title = @"Twitter";
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];

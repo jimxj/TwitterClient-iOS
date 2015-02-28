@@ -28,6 +28,14 @@
 		3876F7A61A990F280080C378 /* TWTweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876F7A41A990F280080C378 /* TWTweetDetailViewController.xib */; };
 		3876F7AA1A995CD80080C378 /* TWNewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */; };
 		3876F7AB1A995CD90080C378 /* TWNewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */; };
+		38D2C0791AA042DE003A340A /* CenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C0771AA042DE003A340A /* CenterViewController.m */; };
+		38D2C07A1AA042DE003A340A /* CenterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C0781AA042DE003A340A /* CenterViewController.xib */; };
+		38D2C07F1AA04314003A340A /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C07D1AA04314003A340A /* LeftViewController.m */; };
+		38D2C0801AA04314003A340A /* LeftViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C07E1AA04314003A340A /* LeftViewController.xib */; };
+		38D2C08A1AA054AE003A340A /* ProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C0881AA054AE003A340A /* ProfileCell.m */; };
+		38D2C08B1AA054AE003A340A /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C0891AA054AE003A340A /* ProfileCell.xib */; };
+		38D2C08F1AA1A693003A340A /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C08D1AA1A693003A340A /* UserProfileViewController.m */; };
+		38D2C0901AA1A693003A340A /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C08E1AA1A693003A340A /* UserProfileViewController.xib */; };
 		B9428F9C9A798D035E21C1E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 319B4AC1684DC9640A8142CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +87,18 @@
 		3876F7A71A995CD80080C378 /* TWNewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TWNewTweetViewController.h; sourceTree = "<group>"; };
 		3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TWNewTweetViewController.m; sourceTree = "<group>"; };
 		3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TWNewTweetViewController.xib; sourceTree = "<group>"; };
+		38D2C0761AA042DE003A340A /* CenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterViewController.h; sourceTree = "<group>"; };
+		38D2C0771AA042DE003A340A /* CenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterViewController.m; sourceTree = "<group>"; };
+		38D2C0781AA042DE003A340A /* CenterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterViewController.xib; sourceTree = "<group>"; };
+		38D2C07C1AA04314003A340A /* LeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		38D2C07D1AA04314003A340A /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		38D2C07E1AA04314003A340A /* LeftViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftViewController.xib; sourceTree = "<group>"; };
+		38D2C0871AA054AE003A340A /* ProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileCell.h; sourceTree = "<group>"; };
+		38D2C0881AA054AE003A340A /* ProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileCell.m; sourceTree = "<group>"; };
+		38D2C0891AA054AE003A340A /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		38D2C08C1AA1A693003A340A /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		38D2C08D1AA1A693003A340A /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		38D2C08E1AA1A693003A340A /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		5B55BBD6DB7B0E46AF3569DC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D48131AB87274AB84C37DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,6 +163,7 @@
 		38510AFE1A945F5500C01636 /* TwitterClient-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				38D2C07B1AA042ED003A340A /* HamburgerManu */,
 				38745BB71A98104600035B73 /* Utils */,
 				38510B2F1A9476BD00C01636 /* Model */,
 				38510B2E1A94610C00C01636 /* API */,
@@ -199,6 +220,9 @@
 				3876F7A71A995CD80080C378 /* TWNewTweetViewController.h */,
 				3876F7A81A995CD80080C378 /* TWNewTweetViewController.m */,
 				3876F7A91A995CD80080C378 /* TWNewTweetViewController.xib */,
+				38D2C08C1AA1A693003A340A /* UserProfileViewController.h */,
+				38D2C08D1AA1A693003A340A /* UserProfileViewController.m */,
+				38D2C08E1AA1A693003A340A /* UserProfileViewController.xib */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -232,6 +256,30 @@
 				38745BB91A9810DF00035B73 /* NSDate+TimeAgo.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		38D2C07B1AA042ED003A340A /* HamburgerManu */ = {
+			isa = PBXGroup;
+			children = (
+				38D2C0861AA0548B003A340A /* LeftViewCells */,
+				38D2C0761AA042DE003A340A /* CenterViewController.h */,
+				38D2C0771AA042DE003A340A /* CenterViewController.m */,
+				38D2C0781AA042DE003A340A /* CenterViewController.xib */,
+				38D2C07C1AA04314003A340A /* LeftViewController.h */,
+				38D2C07D1AA04314003A340A /* LeftViewController.m */,
+				38D2C07E1AA04314003A340A /* LeftViewController.xib */,
+			);
+			name = HamburgerManu;
+			sourceTree = "<group>";
+		};
+		38D2C0861AA0548B003A340A /* LeftViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				38D2C0871AA054AE003A340A /* ProfileCell.h */,
+				38D2C0881AA054AE003A340A /* ProfileCell.m */,
+				38D2C0891AA054AE003A340A /* ProfileCell.xib */,
+			);
+			name = LeftViewCells;
 			sourceTree = "<group>";
 		};
 		5FA3AFD34C0A9BBD7A2E522A /* Pods */ = {
@@ -294,6 +342,7 @@
 				TargetAttributes = {
 					38510AFB1A945F5500C01636 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = MZ6CUAC8S3;
 					};
 					38510B141A945F5500C01636 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -330,9 +379,13 @@
 				3876F7AB1A995CD90080C378 /* TWNewTweetViewController.xib in Resources */,
 				3876F7A11A98645C0080C378 /* NSDateTimeAgo.bundle in Resources */,
 				38510B0D1A945F5500C01636 /* Images.xcassets in Resources */,
+				38D2C0901AA1A693003A340A /* UserProfileViewController.xib in Resources */,
 				38510B2A1A94608A00C01636 /* LoginViewController.xib in Resources */,
 				3876F7A61A990F280080C378 /* TWTweetDetailViewController.xib in Resources */,
+				38D2C0801AA04314003A340A /* LeftViewController.xib in Resources */,
+				38D2C08B1AA054AE003A340A /* ProfileCell.xib in Resources */,
 				38510B6F1A97057D00C01636 /* MainViewController.xib in Resources */,
+				38D2C07A1AA042DE003A340A /* CenterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38510B2D1A94610600C01636 /* TwitterClient.m in Sources */,
+				38D2C08F1AA1A693003A340A /* UserProfileViewController.m in Sources */,
 				38510B6E1A97057D00C01636 /* MainViewController.m in Sources */,
 				38510B051A945F5500C01636 /* AppDelegate.m in Sources */,
 				38510B801A9713B800C01636 /* TWReTweetCell.m in Sources */,
@@ -391,8 +445,11 @@
 				3876F7A51A990F280080C378 /* TWTweetDetailViewController.m in Sources */,
 				3876F7AA1A995CD80080C378 /* TWNewTweetViewController.m in Sources */,
 				38510B021A945F5500C01636 /* main.m in Sources */,
+				38D2C08A1AA054AE003A340A /* ProfileCell.m in Sources */,
+				38D2C0791AA042DE003A340A /* CenterViewController.m in Sources */,
 				38745BBD1A98145A00035B73 /* NSMutableSet+OperationByValue.m in Sources */,
 				38510B721A97067E00C01636 /* TWTweet.m in Sources */,
+				38D2C07F1AA04314003A340A /* LeftViewController.m in Sources */,
 				38510B291A94608A00C01636 /* LoginViewController.m in Sources */,
 				38510B321A94770600C01636 /* TWUser.m in Sources */,
 			);
@@ -509,6 +566,7 @@
 			baseConfigurationReference = 5B55BBD6DB7B0E46AF3569DC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "TwitterClient-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,6 +578,7 @@
 			baseConfigurationReference = B0D48131AB87274AB84C37DB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "TwitterClient-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

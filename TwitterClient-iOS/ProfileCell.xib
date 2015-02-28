@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="KGk-i7-Jjw" customClass="ProfileCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jim Liu" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5A-b5-CKT">
+                        <rect key="frame" x="64" y="23" width="46.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fFX-JD-tVF">
+                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="EeP-tW-dRE"/>
+                            <constraint firstAttribute="height" constant="48" id="h3g-Ke-dYf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@jimliuxj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhO-30-CLl">
+                        <rect key="frame" x="118" y="24" width="48" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerY" secondItem="v5A-b5-CKT" secondAttribute="centerY" id="3vv-0r-C0w"/>
+                    <constraint firstAttribute="centerY" secondItem="PhO-30-CLl" secondAttribute="centerY" id="7Zt-bk-ShL"/>
+                    <constraint firstItem="fFX-JD-tVF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="BIg-hS-nxr"/>
+                    <constraint firstAttribute="bottom" secondItem="fFX-JD-tVF" secondAttribute="bottom" constant="8" id="I5r-cM-zGn"/>
+                    <constraint firstItem="fFX-JD-tVF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="RUe-YU-20w"/>
+                    <constraint firstItem="PhO-30-CLl" firstAttribute="leading" secondItem="v5A-b5-CKT" secondAttribute="trailing" constant="8" id="XwT-FC-HgW"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PhO-30-CLl" secondAttribute="trailing" constant="8" id="ikR-2k-bCN"/>
+                    <constraint firstItem="v5A-b5-CKT" firstAttribute="leading" secondItem="fFX-JD-tVF" secondAttribute="trailing" constant="8" id="mRD-mG-8aE"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="screenNameLabel" destination="PhO-30-CLl" id="9De-lF-Jev"/>
+                <outlet property="userNameLabel" destination="v5A-b5-CKT" id="1rw-0n-bK6"/>
+                <outlet property="userProfileImage" destination="fFX-JD-tVF" id="S7l-1o-yyU"/>
+            </connections>
+            <point key="canvasLocation" x="178" y="215"/>
+        </tableViewCell>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
