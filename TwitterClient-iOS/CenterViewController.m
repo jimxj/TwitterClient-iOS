@@ -10,6 +10,8 @@
 #import "LeftViewController.h"
 #import "UserProfileViewController.h"
 #import "MainViewController.h"
+#import "TWUser.h"
+#import "UserProfileViewController.h"
 
 @interface CenterViewController ()
 
@@ -22,6 +24,8 @@
 @property (nonatomic, assign) CGPoint originalCenter;
 
 @property (nonatomic, strong) UINavigationController *homeTimelineController;
+
+@property (nonatomic, strong) UserProfileViewController *userProfileViewController;
 
 @end
 
@@ -49,7 +53,7 @@
 -(void) manuDidChanged:(TwitterManuItem) manuItem {
     switch (manuItem) {
         case TwitterManuItemUserProfile: {
-            [self setViewController:[[UserProfileViewController alloc] init] atIndex:1];
+            [self setViewController:self.userProfileViewController atIndex:1];
             break;
         }
         case TwitterManuItemHomeTimeLine: {
@@ -95,7 +99,31 @@
 }
 
 - (void) setViewController:(UIViewController *) viewController atIndex:(NSInteger)index {
-    //right
+    if([viewController class] == [self.rightViewController class]) {
+        return;
+    }
+    
+//    [self.view insertSubview:viewController.view atIndex:[self.view.subviews count]];
+//    [self addChildViewController:viewController];
+//    
+//    //right
+//    if(1 == index) {
+//        if(self.rightViewController) {
+//            [self transitionFromViewController:self.rightViewController toViewController:viewController duration:0.2 options:0 animations:^{
+//                // Do any fancy animation you like
+//            } completion:^(BOOL finished) {
+//                [self.rightViewController removeFromParentViewController];
+//                [self.rightViewController.view removeFromSuperview];
+//                [self.rightViewController.view  removeGestureRecognizer:self.tapGestureRecognizer];
+//            }];
+//        }
+//        
+//        self.rightViewController = viewController;
+//        [self.rightViewController.view addGestureRecognizer:self.tapGestureRecognizer];
+//    }
+//    
+//    [viewController didMoveToParentViewController:self];
+    
     if(1 == index) {
         if(self.rightViewController) {
             [self.rightViewController removeFromParentViewController];
@@ -131,6 +159,14 @@
     }
     
     return _homeTimelineController;
+}
+
+- (UserProfileViewController *) userProfileViewController {
+    if(!_userProfileViewController) {
+        _userProfileViewController = [[UserProfileViewController alloc] initWithUserScreenName:[TWUser currentUser].screenName];
+    }
+    
+    return _userProfileViewController;
 }
 
 /*

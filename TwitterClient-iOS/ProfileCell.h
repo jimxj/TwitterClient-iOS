@@ -10,6 +10,5 @@
 
 @interface ProfileCell : UITableViewCell
 
--(void) setData;
 
 @end

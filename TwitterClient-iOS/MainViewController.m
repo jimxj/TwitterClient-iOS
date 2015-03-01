@@ -16,10 +16,9 @@
 #import "TWNewTweetViewController.h"
 #import "UIScrollView+SVPullToRefresh.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
+#import "UserProfileViewController.h"
 
-NSString * const kReTweetCellName = @"TWReTweetCell";
-
-@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, NewTweetProtocol>
+@interface MainViewController () <UITableViewDataSource, UITableViewDelegate, NewTweetProtocol, TweetCellProtocol>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshController;
@@ -45,7 +44,7 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewButton)];
 
     // set uptable view
-    [self.tableView registerNib:[UINib nibWithNibName:kReTweetCellName bundle:nil] forCellReuseIdentifier:kReTweetCellName];
+    [self.tableView registerNib:[UINib nibWithNibName:kTweetCellName bundle:nil] forCellReuseIdentifier:kTweetCellName];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -90,8 +89,9 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TWReTweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kReTweetCellName];
+    TWReTweetCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kTweetCellName];
     cell.tweet = self.tweets[indexPath.row];
+    cell.tweetHandler = self;
     cell.selectionStyle = UITableViewCellSelectionStyleGray;
     return cell;
 }
@@ -151,8 +151,9 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
 -(void) onNewButton {
     TWNewTweetViewController *vc = [[TWNewTweetViewController alloc] init];
     vc.tweetCreationListner = self;
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:nvc animated:YES completion:nil];
+    //UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
+    //[self presentViewController:nvc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma new tweet protocol
@@ -161,6 +162,12 @@ NSString * const kReTweetCellName = @"TWReTweetCell";
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:YES];
     //[self.tableView reloadData];
+}
+
+#pragma mark - TweetCellProtocol
+- (void) tweetCell:(TWReTweetCell *) tweetCell userImageDidTapped:(NSString *) screenName {
+    UserProfileViewController *vc = [[UserProfileViewController alloc] initWithUserScreenName:screenName];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

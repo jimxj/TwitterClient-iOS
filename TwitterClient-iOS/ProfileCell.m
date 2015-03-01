@@ -35,14 +35,6 @@
     [self.userProfileImage setImageWithURL:[NSURL URLWithString:currentUser.profileImageUrl]];
 }
 
--(void) setData {
-    NSLog(@"setData of ProfielCell is called");
-    TWUser *currentUser = [TWUser currentUser];
-    [self.userNameLabel setText:currentUser.name];
-    [self.screenNameLabel setText:[NSString stringWithFormat:@"@%@", currentUser.screenName]];
-    [self.userProfileImage setImageWithURL:[NSURL URLWithString:currentUser.profileImageUrl]];
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

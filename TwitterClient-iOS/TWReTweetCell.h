@@ -9,8 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "TWTweet.h"
 
+@class TWReTweetCell;
+
+extern NSString * const kTweetCellName;
+
+@protocol TweetCellProtocol
+
+- (void) tweetCell:(TWReTweetCell *) tweetCell userImageDidTapped:(NSString *) screenName;
+
+@end
+
 @interface TWReTweetCell : UITableViewCell
 
 @property (nonatomic, strong) TWTweet *tweet;
+
+@property (nonatomic, weak) id<TweetCellProtocol> tweetHandler;
 
 @end

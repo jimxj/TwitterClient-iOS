@@ -24,4 +24,8 @@
 
 - (void) openURL:(NSURL *) url;
 
+- (void) getUserInfo:(NSString *) userScreenName WithCompletion:(void (^)(NSDictionary *userDictionary, NSError *error)) completion;
+
+- (void) getUserTimeline:(NSString *) userScreenName WithCompletion:(void (^)(NSArray *tweets, NSError *error)) completion;
+
 @end

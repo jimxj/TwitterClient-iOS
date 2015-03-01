@@ -10,4 +10,8 @@
 
 @interface UserProfileViewController : UIViewController
 
+@property (nonatomic, strong) NSString *screenName;
+
+- (instancetype) initWithUserScreenName:(NSString *) screenName;
+
 @end

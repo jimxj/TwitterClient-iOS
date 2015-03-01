@@ -100,5 +100,29 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void) getUserInfo:(NSString *) userScreenName WithCompletion:(void (^)(NSDictionary *userDictionary, NSError *error)) completion {
+    [[TwitterClient sharedInstance] POST:@"1.1/users/lookup.json" parameters: @{@"screen_name": userScreenName} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"getUserInfo success response: %@", responseObject);
+        completion(((NSArray *)responseObject)[0], nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"getUserInfo failure response: %@", error);
+        completion(nil, error);
+    }];
+}
+
+- (void) getUserTimeline:(NSString *) userScreenName WithCompletion:(void (^)(NSArray *tweets, NSError *error)) completion {
+    [[TwitterClient sharedInstance] GET:@"1.1/statuses/user_timeline.json" parameters: @{@"screen_name": userScreenName} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //NSLog(@"home_timeline json: %@", responseObject);
+        //TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
+        //NSLog(@"Current user : %@", user);
+        
+        NSArray *newTweets = [TWTweet tweetsWithArray:responseObject];
+        completion(newTweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Faile to get home_timeline : %@", error);
+        completion(nil, error);
+    }];
+}
+
 
 @end

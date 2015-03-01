@@ -11,6 +11,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "TwitterClient.h"
 
+NSString * const kTweetCellName = @"TWReTweetCell";
+
 @interface TWReTweetCell()
 
 @property (weak, nonatomic) IBOutlet UILabel *retweetLabel;
@@ -43,7 +45,15 @@
     
     UITapGestureRecognizer *favoriteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(favoriteFlagTaped)];
     [self.favoratedFlagImage addGestureRecognizer:favoriteTap];
+    
+    UITapGestureRecognizer *userProfileImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onUserProfileImageTapped:)];
+    [self.testImage addGestureRecognizer:userProfileImageTap];
 }
+
+- (IBAction)onUserProfileImageTapped:(UITapGestureRecognizer *)sender {
+    [self.tweetHandler tweetCell:self userImageDidTapped:self.tweet.user.screenName];
+}
+
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 //    [super setSelected:selected animated:animated];
@@ -55,7 +65,7 @@
     _tweet = tweet;
     
     [self.tweetTextLabel setText:tweet.text];
-    [self.timestampLabel setText:[tweet.createdAt dateTimeAgo]];
+    [self.timestampLabel setText:[tweet.createdAt timeAgoSimple]];
     [self.replyNumLabel setText:[NSString stringWithFormat:@"%ld",(long)tweet.replyNum]];
     [self.retweetNumLabel setText:[NSString stringWithFormat:@"%ld",(long)tweet.retweetNum]];
     [self.favorateNumLabel setText:[NSString stringWithFormat:@"%ld",(long)tweet.favorateNum]];

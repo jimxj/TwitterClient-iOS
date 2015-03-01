@@ -57,7 +57,8 @@
 }
 
 - (void) onCancelButton {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) onApplyButton {
@@ -68,7 +69,7 @@
             }
         }];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView {
