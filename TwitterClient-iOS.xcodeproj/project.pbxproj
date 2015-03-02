@@ -36,6 +36,8 @@
 		38D2C08B1AA054AE003A340A /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C0891AA054AE003A340A /* ProfileCell.xib */; };
 		38D2C08F1AA1A693003A340A /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C08D1AA1A693003A340A /* UserProfileViewController.m */; };
 		38D2C0901AA1A693003A340A /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C08E1AA1A693003A340A /* UserProfileViewController.xib */; };
+		38D2C0941AA3D67A003A340A /* UserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D2C0921AA3D67A003A340A /* UserProfileCell.m */; };
+		38D2C0951AA3D67A003A340A /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D2C0931AA3D67A003A340A /* UserProfileCell.xib */; };
 		B9428F9C9A798D035E21C1E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 319B4AC1684DC9640A8142CF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +101,9 @@
 		38D2C08C1AA1A693003A340A /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		38D2C08D1AA1A693003A340A /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		38D2C08E1AA1A693003A340A /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		38D2C0911AA3D67A003A340A /* UserProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCell.h; sourceTree = "<group>"; };
+		38D2C0921AA3D67A003A340A /* UserProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCell.m; sourceTree = "<group>"; };
+		38D2C0931AA3D67A003A340A /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
 		5B55BBD6DB7B0E46AF3569DC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B0D48131AB87274AB84C37DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +141,9 @@
 				38510B7D1A9713B800C01636 /* TWReTweetCell.h */,
 				38510B7E1A9713B800C01636 /* TWReTweetCell.m */,
 				38510B7F1A9713B800C01636 /* TWReTweetCell.xib */,
+				38D2C0911AA3D67A003A340A /* UserProfileCell.h */,
+				38D2C0921AA3D67A003A340A /* UserProfileCell.m */,
+				38D2C0931AA3D67A003A340A /* UserProfileCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -381,6 +389,7 @@
 				38510B0D1A945F5500C01636 /* Images.xcassets in Resources */,
 				38D2C0901AA1A693003A340A /* UserProfileViewController.xib in Resources */,
 				38510B2A1A94608A00C01636 /* LoginViewController.xib in Resources */,
+				38D2C0951AA3D67A003A340A /* UserProfileCell.xib in Resources */,
 				3876F7A61A990F280080C378 /* TWTweetDetailViewController.xib in Resources */,
 				38D2C0801AA04314003A340A /* LeftViewController.xib in Resources */,
 				38D2C08B1AA054AE003A340A /* ProfileCell.xib in Resources */,
@@ -439,6 +448,7 @@
 				38510B2D1A94610600C01636 /* TwitterClient.m in Sources */,
 				38D2C08F1AA1A693003A340A /* UserProfileViewController.m in Sources */,
 				38510B6E1A97057D00C01636 /* MainViewController.m in Sources */,
+				38D2C0941AA3D67A003A340A /* UserProfileCell.m in Sources */,
 				38510B051A945F5500C01636 /* AppDelegate.m in Sources */,
 				38510B801A9713B800C01636 /* TWReTweetCell.m in Sources */,
 				38745BBA1A9810DF00035B73 /* NSDate+TimeAgo.m in Sources */,

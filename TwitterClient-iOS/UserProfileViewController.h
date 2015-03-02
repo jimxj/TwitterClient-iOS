@@ -11,7 +11,8 @@
 @interface UserProfileViewController : UIViewController
 
 @property (nonatomic, strong) NSString *screenName;
+@property (nonatomic, assign) BOOL hasNavigationBar;
 
-- (instancetype) initWithUserScreenName:(NSString *) screenName;
+- (instancetype) initWithUserScreenName:(NSString *) screenName hasNavigationbar:(BOOL) hasNavigationBar;
 
 @end

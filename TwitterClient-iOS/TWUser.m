@@ -65,7 +65,7 @@ NSString * const kCurrentUserKey = @"kCurrentUserKey";
 }
 
 - (instancetype) initFromJson:(NSDictionary *) dictionaryValue {
-    NSLog(@"dictionaryValue : \n%@", dictionaryValue);
+    //NSLog(@"dictionaryValue : \n%@", dictionaryValue);
     __block NSMutableDictionary *filteredDictionary = [NSMutableDictionary dictionary];
     NSMutableSet *interestedKeys = [[NSSet setWithArray:[[TWUser JSONKeyPathsByPropertyKey] allValues]] mutableCopy];
     [dictionaryValue enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
@@ -73,7 +73,7 @@ NSString * const kCurrentUserKey = @"kCurrentUserKey";
             [filteredDictionary setObject:obj forKey:key];
         }
     }];
-    NSLog(@"filteredDictionary : \n%@", filteredDictionary);
+    //NSLog(@"filteredDictionary : \n%@", filteredDictionary);
     //self = [super initWithDictionary:filteredDictionary error:nil];
     self = [MTLJSONAdapter modelOfClass:TWUser.class fromJSONDictionary:filteredDictionary error:nil];
     //if (self == nil) return nil;

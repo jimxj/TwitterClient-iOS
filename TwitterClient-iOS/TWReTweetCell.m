@@ -83,6 +83,9 @@ NSString * const kTweetCellName = @"TWReTweetCell";
         
         self.retweetHeaderImage.hidden = YES;
         self.retweetLabel.hidden = YES;
+        
+        self.retweetHeaderImage.frame = CGRectMake(self.retweetHeaderImage.frame.origin.x, self.retweetHeaderImage.frame.origin.y, self.retweetHeaderImage.frame.size.width, 0);
+        self.retweetLabel.frame = CGRectMake(self.retweetLabel.frame.origin.x, self.retweetLabel.frame.origin.y, self.retweetLabel.frame.size.width, 0);
     }
     
     if(tweet.favorited) {

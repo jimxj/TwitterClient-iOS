@@ -112,7 +112,7 @@
         [params setObject:minId forKey:@"since_id"];
     }
     [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"home_timeline json: %@", responseObject);
+        NSLog(@"home_timeline json: %@", responseObject);
         //TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
         //NSLog(@"Current user : %@", user);
         
@@ -166,7 +166,7 @@
 
 #pragma mark - TweetCellProtocol
 - (void) tweetCell:(TWReTweetCell *) tweetCell userImageDidTapped:(NSString *) screenName {
-    UserProfileViewController *vc = [[UserProfileViewController alloc] initWithUserScreenName:screenName];
+    UserProfileViewController *vc = [[UserProfileViewController alloc] initWithUserScreenName:screenName hasNavigationbar:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -42,7 +42,7 @@
             [filteredDictionary setObject:obj forKey:key];
         }
     }];
-    NSLog(@"filteredDictionary : \n%@", filteredDictionary);
+    //NSLog(@"filteredDictionary : \n%@", filteredDictionary);
     //self = [super initWithDictionary:filteredDictionary error:nil];
     self = [MTLJSONAdapter modelOfClass:TWTweet.class fromJSONDictionary:filteredDictionary error:nil];
     if (self) {

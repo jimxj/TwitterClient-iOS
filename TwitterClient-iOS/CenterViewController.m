@@ -163,7 +163,7 @@
 
 - (UserProfileViewController *) userProfileViewController {
     if(!_userProfileViewController) {
-        _userProfileViewController = [[UserProfileViewController alloc] initWithUserScreenName:[TWUser currentUser].screenName];
+        _userProfileViewController = [[UserProfileViewController alloc] initWithUserScreenName:[TWUser currentUser].screenName hasNavigationbar:NO];
     }
     
     return _userProfileViewController;
