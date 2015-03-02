@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UINavigationController *homeTimelineController;
 
+@property (nonatomic, strong) UINavigationController *mentionsTimelineController;
+
 @property (nonatomic, strong) UserProfileViewController *userProfileViewController;
 
 @end
@@ -58,6 +60,10 @@
         }
         case TwitterManuItemHomeTimeLine: {
             [self setViewController:self.homeTimelineController atIndex:1];
+            break;
+        }
+        case TwitterManuItemMentions: {
+            [self setViewController:self.mentionsTimelineController atIndex:1];
             break;
         }
         default:
@@ -99,7 +105,7 @@
 }
 
 - (void) setViewController:(UIViewController *) viewController atIndex:(NSInteger)index {
-    if([viewController class] == [self.rightViewController class]) {
+    if(viewController == self.rightViewController) {
         return;
     }
     
@@ -155,10 +161,23 @@
         _homeTimelineController.navigationBar.barStyle = UIBarStyleBlack;
         _homeTimelineController.navigationBar.tintColor = [UIColor whiteColor];
         _homeTimelineController.navigationBar.backgroundColor = [UIColor blueColor];
-        [_homeTimelineController setViewControllers:@[[[MainViewController alloc] init]]];
+        [_homeTimelineController setViewControllers:@[[[MainViewController alloc] initWithTimelineType:@"home_timeline"]]];
     }
     
     return _homeTimelineController;
+}
+
+- (UINavigationController *) mentionsTimelineController {
+    if(!_mentionsTimelineController) {
+        _mentionsTimelineController = [[UINavigationController alloc] init];
+        _mentionsTimelineController.navigationBar.translucent = YES;
+        _mentionsTimelineController.navigationBar.barStyle = UIBarStyleBlack;
+        _mentionsTimelineController.navigationBar.tintColor = [UIColor whiteColor];
+        _mentionsTimelineController.navigationBar.backgroundColor = [UIColor blueColor];
+        [_mentionsTimelineController setViewControllers:@[[[MainViewController alloc] initWithTimelineType:@"mentions_timeline"]]];
+    }
+    
+    return _mentionsTimelineController;
 }
 
 - (UserProfileViewController *) userProfileViewController {

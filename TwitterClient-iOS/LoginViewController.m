@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TwitterClient.h"
-#import "MainViewController.h"
+#import "CenterViewController.h"
 
 @interface LoginViewController ()
 
@@ -32,14 +32,10 @@
             NSLog(@"Welcome %@", user.name);
             
             //Modally present tweet view
-            UINavigationController *nvc = [[UINavigationController alloc] init];
-            nvc.navigationBar.translucent = YES;
-            nvc.navigationBar.barStyle = UIBarStyleBlack;
-            nvc.navigationBar.tintColor = [UIColor whiteColor];
-            nvc.navigationBar.backgroundColor = [UIColor blueColor];
-            [nvc setViewControllers:@[[[MainViewController alloc] init]]];
+            CenterViewController *centerVC = [[CenterViewController alloc] init];
+            [centerVC manuDidChanged:TwitterManuItemHomeTimeLine];
             
-            [self presentViewController:nvc animated:YES completion:nil ];
+            [self presentViewController:centerVC animated:YES completion:nil ];
         } else {
             //present error view
         }

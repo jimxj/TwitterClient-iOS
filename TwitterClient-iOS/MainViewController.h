@@ -10,4 +10,8 @@
 
 @interface MainViewController : UIViewController
 
+@property (nonatomic, strong) NSString *timelineType;
+
+- (instancetype) initWithTimelineType:(NSString *) timelineType;
+
 @end

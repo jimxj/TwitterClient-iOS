@@ -30,20 +30,23 @@
 
 @implementation MainViewController
 
+- (instancetype) initWithTimelineType:(NSString *) timelineType {
+    self = [super init];
+    if(self) {
+        _timelineType = timelineType;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.view.layer.borderWidth = 1;
     self.view.layer.borderColor = [UIColor blueColor].CGColor;
-    
-    self.title = @"Twitter";
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewButton)];
 
-    // set uptable view
+    // set up table view
     [self.tableView registerNib:[UINib nibWithNibName:kTweetCellName bundle:nil] forCellReuseIdentifier:kTweetCellName];
     
     self.tableView.delegate = self;
@@ -77,6 +80,15 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
+    if([self.timelineType isEqualToString:@"home_timeline"]) {
+        self.title = @"Twitter";
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onSignOutButton)];
+        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNewButton)];
+    } else {
+        self.title = @"Mentions";
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,8 +123,8 @@
     if(minId) {
         [params setObject:minId forKey:@"since_id"];
     }
-    [[TwitterClient sharedInstance] GET:@"1.1/statuses/home_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"home_timeline json: %@", responseObject);
+    [[TwitterClient sharedInstance] GET:[NSString stringWithFormat:@"1.1/statuses/%@.json", self.timelineType] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@ json: %@", self.timelineType, responseObject);
         //TWUser *user = [[TWUser alloc] initWithDictionary:responseObject error:nil];
         //NSLog(@"Current user : %@", user);
         
